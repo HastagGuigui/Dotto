@@ -103,6 +103,11 @@ public:
         String keyName = event.keyname;
         String text = this->text;
         cursorPosition = std::min(text.size(), cursorPosition);
+        logI("Typed: " + keyName);
+        logI(event.keycode);
+        if(!allowRegex->empty()){
+            logI(*allowRegex);
+        }
         if (keyName == "BACKSPACE") {
             if (!cursorPosition)
                 return;
@@ -114,7 +119,8 @@ public:
         } else if (keyName == "LEFT") {
             if (cursorPosition)
                 cursorPosition--;
-        } else if (event.keycode >= ' ' && event.keycode < 0x80) {
+        } else if ((event.keycode >= ' ' && event.keycode < 0x80) || 0x40000059 < event.keycode < 0x40000062) {//so basically every numpad key starts with some 0x400000XX bullshit for some reason?
+            logI("valid key");
             String key(reinterpret_cast<const char*>(&event.keycode));
             try {
                 if (!allowRegex->empty() && !std::regex_match(key, std::regex(*allowRegex))) {
