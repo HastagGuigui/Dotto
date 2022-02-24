@@ -1,4 +1,4 @@
-# LibreSprite Dotto! [![Linux x86_64 CI](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-linux-x86_64.yml/badge.svg?branch=development)](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-linux-x86_64.yml)
+# LibreSprite Dotto! [![Linux x86_64 CI](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-linux-x86_64.yml/badge.svg?branch=development)](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-linux-x86_64.yml) [![Windows i686 CI](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-windows-x86_64.yml/badge.svg)](https://github.com/LibreSprite/Dotto/actions/workflows/c-cpp-windows-x86_64.yml)
 
 ## Funding / Contributing
 
@@ -32,7 +32,7 @@ free to give the repo a star. *Think of the codegnomes.*
 | Internationalization           | OK            | 0.5     |                                                 |
 | OpenGL Hardware acceleration   | OK            | 1.0     |                                                 |
 | x86/64 Linux                   | OK            | 0.5     |                                                 |
-| x86/64 Windows                 | Planned       | 0.5     |                                                 |
+| x86/64 Windows                 | Untested      | 0.5     |                                                 |
 | x86_64 MacOS                   | OK            | 1.0     |                                                 |
 | Raspberry Pi 4 support         | OK            | 1.0     |                                                 |
 | Undo / Redo                    | OK            | 0.5     |                                                 |
@@ -43,7 +43,7 @@ free to give the repo a star. *Think of the codegnomes.*
 | Pencil shapes/sizes            | OK            | 0.5     |                                                 |
 | Pencil blending modes          | Planned       | 1.0     |                                                 |
 | Line smoothing                 | Basic         | 1.0     |                                                 |
-| Eraser tool                    | OKK           | 0.5     |                                                 |
+| Eraser tool                    | OK           | 0.5     |                                                 |
 | Text tool                      | Planned       | 1.0     |                                                 |
 | Selection                      | Internal only | 0.5     | Selections implemented but inaccessible to user |
 | Rectangular Selection tool     | Planned       | 0.5     |                                                 |
