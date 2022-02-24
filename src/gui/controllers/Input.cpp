@@ -101,11 +101,12 @@ public:
         bool changed = false;
         event.cancel = true;
         String keyName = event.keyname;
+        auto keycode = event.keycode;
         String text = this->text;
         cursorPosition = std::min(text.size(), cursorPosition);
-        //logI(event.keycode);
-        if(!allowRegex->empty()){
-            //logI(*allowRegex);
+        if (startsWith(keyName, "KP_")) {
+            keycode = keyName[3];
+            keyName = keyName.substr(3);
         }
         if (keyName == "BACKSPACE") {
             if (!cursorPosition)
@@ -118,17 +119,8 @@ public:
         } else if (keyName == "LEFT") {
             if (cursorPosition)
                 cursorPosition--;
-        } else if ((event.keycode >= ' ' && event.keycode < 0x80) || 0x40000059 < event.keycode < 0x40000062) {//so basically every numpad key starts with some 0x400000XX bullshit for some reason?
-            //logI("valid key");
-            String key(reinterpret_cast<const char*>(&event.keycode));
-            if(0x40000059 < event.keycode < 0x40000062 && !(event.keycode >= ' ' && event.keycode < 0x80)){
-                logI("NumpadKey detected: ", event.keycode);
-                event.
-                key = reinterpret_cast<const char*>(&event.keycode - 41);
-            }
-            if(!allowRegex->empty()){
-                logI(key,std::regex_match(keyName, std::regex(*allowRegex)),std::regex_match(key, std::regex(*allowRegex)));
-            }
+        } else if (keycode >= ' ' && keycode < 0x80) {
+            String key(reinterpret_cast<const char*>(&keycode));
             try {
                 if (!allowRegex->empty() && !std::regex_match(keyName, std::regex(*allowRegex))) {
                     return;
@@ -136,7 +128,6 @@ public:
             } catch (std::regex_error& err) {
                 logE("Input Regex Error: ", err.what(), "\nExpression: /", *allowRegex, "/");
             }
-            logI("Typed: " + key);
             text.insert(cursorPosition++, key, 0, key.size());
             changed = true;
         } else {
